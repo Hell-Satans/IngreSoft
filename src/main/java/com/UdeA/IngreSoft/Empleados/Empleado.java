@@ -3,10 +3,18 @@ package com.UdeA.IngreSoft.Empleados;
 public class Empleado {
 
     private String nombre;
-    private String Id;
+    private String Idempleado;
     private String telefono;
     private String cargo;
     private String correo;
+
+    public Empleado(String nombre, String idempleado, String telefono, String cargo, String correo) {
+        this.nombre = nombre;
+        Idempleado = idempleado;
+        this.telefono = telefono;
+        this.cargo = cargo;
+        this.correo = correo;
+    }
 
     public String getNombre() {
         return nombre;
@@ -16,12 +24,12 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public String getId() {
-        return Id;
+    public String getIdempleado() {
+        return Idempleado;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setIdempleado(String idempleado) {
+        Idempleado = idempleado;
     }
 
     public String getTelefono() {
@@ -45,14 +53,6 @@ public class Empleado {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public Empleado(String nombre, String id, String telefono, String cargo, String correo) {
-        this.nombre = nombre;
-        this.Id = id;
-        this.telefono = telefono;
-        this.cargo = cargo;
         this.correo = correo;
     }
 }
