@@ -16,6 +16,9 @@ public class Empleado {
         this.correo = correo;
     }
 
+    public Empleado() {
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -54,5 +57,16 @@ public class Empleado {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", Idempleado='" + Idempleado + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", correo='" + correo + '\'' +
+                '}';
     }
 }
