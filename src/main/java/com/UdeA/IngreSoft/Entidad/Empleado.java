@@ -1,4 +1,6 @@
-package com.UdeA.IngreSoft.Empleados;
+package com.UdeA.IngreSoft.Entidad;
+
+import com.UdeA.IngreSoft.Entidad.Empresa;
 
 public class Empleado {
 
@@ -7,6 +9,7 @@ public class Empleado {
     private String telefono;
     private String cargo;
     private String correo;
+    private Empresa empleado;
 
     public Empleado(String nombre, String idempleado, String telefono, String cargo, String correo) {
         this.nombre = nombre;

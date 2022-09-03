@@ -1,27 +1,29 @@
-package com.UdeA.IngreSoft;
+package com.UdeA.IngreSoft.Entidad;
+
+import com.UdeA.IngreSoft.Entidad.Empleado;
+import com.UdeA.IngreSoft.Entidad.Empresa;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class MovDinero {
 
     private String id;
     private String concepto;
     private float monto;
-    private String usuario;
-    private String empresa;
-    private Calendar fecha;
+    private Empleado empleado;
+    private Empresa empresa;
+    private Date fecha;
 
 
-
-    public MovDinero(String id, String concepto, float monto, String usuario, String empresa, Calendar fecha) {
+    public MovDinero(String id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
-        this.usuario = usuario;
+        this.empleado = empleado;
         this.empresa = empresa;
         this.fecha = fecha;
     }
-
 
     public String getId() {
         return id;
@@ -47,30 +49,27 @@ public class MovDinero {
         this.monto = monto;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
-    public String getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
-    public Calendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Calendar fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-
-
 }
