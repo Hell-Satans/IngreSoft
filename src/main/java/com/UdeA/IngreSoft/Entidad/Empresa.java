@@ -1,4 +1,6 @@
-package com.UdeA.IngreSoft;
+package com.UdeA.IngreSoft.Entidad;
+
+import java.util.Date;
 
 public class Empresa {
 
@@ -7,15 +9,25 @@ public class Empresa {
     private String direccion;
     private String telefono;
     private String nit;
-    private date createdAt;
-    private date updatedAt;
+    private Date createdAt;
+    private Date updatedAt;
 
-    public Empresa(String Id, String nombre, String direccion, String telefono, String nit) {
-        this.Id=Id;
+    public Empresa(String id, String nombre, String direccion, String telefono, String nit, Date createdAt, Date updatedAt) {
+        Id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getNombre() {
@@ -50,19 +62,19 @@ public class Empresa {
         this.nit = nit;
     }
 
-    public date getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(date createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public date getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(date updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
