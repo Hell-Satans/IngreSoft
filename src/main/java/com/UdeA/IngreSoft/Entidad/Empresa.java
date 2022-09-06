@@ -1,5 +1,6 @@
 package com.UdeA.IngreSoft.Entidad;
 
+<<<<<<< HEAD
 import java.util.Date;
 
 public class Empresa {
@@ -13,13 +14,55 @@ public class Empresa {
     private Date updatedAt;
 
     public Empresa(String id, String nombre, String direccion, String telefono, String nit, Date createdAt, Date updatedAt) {
+=======
+import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Date;
+@Entity
+@Table(name="Empresa")
+public class Empresa {
+
+    @Id
+    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String Id;
+    @Column(unique = true, length = 100)
+    private String nombre;
+    @Column(nullable = false, length = 80)
+    private String direccion;
+    @Column(nullable = false, length = 30)
+    private String telefono;
+    @Column(unique = true, length = 30)
+    private String nit;
+    /*@OneToMany
+    @JoinColumn(name="Empleado")
+    private ArrayList<Empleado> usuarios;
+    @OneToMany
+    @JoinColumn(name="Movimientos")
+    private ArrayList<MovDinero> transacciones;
+    @Column(name = "Fecha Creado")
+    private Date createdAt;
+    @Column(name = "Fecha Actualizado")
+    private Date updatedAt;*/
+
+    public Empresa() {
+    }
+
+    public Empresa(String id, String nombre, String direccion, String telefono, String nit) {
+>>>>>>> origin/master
         Id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
+<<<<<<< HEAD
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+=======
+
+>>>>>>> origin/master
     }
 
     public String getId() {
@@ -62,6 +105,25 @@ public class Empresa {
         this.nit = nit;
     }
 
+<<<<<<< HEAD
+=======
+   /* public ArrayList<Empleado> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Empleado> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public ArrayList<MovDinero> getTransacciones() {
+        return transacciones;
+    }
+
+    public void setTransacciones(ArrayList<MovDinero> transacciones) {
+        this.transacciones = transacciones;
+    }
+
+>>>>>>> origin/master
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -76,5 +138,19 @@ public class Empresa {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+<<<<<<< HEAD
+=======
+    }*/
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "Id=" + Id +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", nit='" + nit + '\'' +
+                '}';
+>>>>>>> origin/master
     }
 }
