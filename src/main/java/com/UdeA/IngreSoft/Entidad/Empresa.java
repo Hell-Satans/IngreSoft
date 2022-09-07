@@ -1,20 +1,5 @@
 package com.UdeA.IngreSoft.Entidad;
 
-<<<<<<< HEAD
-import java.util.Date;
-
-public class Empresa {
-
-    private String Id;
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    private String nit;
-    private Date createdAt;
-    private Date updatedAt;
-
-    public Empresa(String id, String nombre, String direccion, String telefono, String nit, Date createdAt, Date updatedAt) {
-=======
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.swing.*;
@@ -51,18 +36,12 @@ public class Empresa {
     }
 
     public Empresa(String id, String nombre, String direccion, String telefono, String nit) {
->>>>>>> origin/master
         Id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
-<<<<<<< HEAD
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-=======
 
->>>>>>> origin/master
     }
 
     public String getId() {
@@ -105,8 +84,6 @@ public class Empresa {
         this.nit = nit;
     }
 
-<<<<<<< HEAD
-=======
    /* public ArrayList<Empleado> getUsuarios() {
         return usuarios;
     }
@@ -123,7 +100,6 @@ public class Empresa {
         this.transacciones = transacciones;
     }
 
->>>>>>> origin/master
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -138,8 +114,6 @@ public class Empresa {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-<<<<<<< HEAD
-=======
     }*/
 
     @Override
@@ -151,6 +125,5 @@ public class Empresa {
                 ", telefono='" + telefono + '\'' +
                 ", nit='" + nit + '\'' +
                 '}';
->>>>>>> origin/master
     }
 }
