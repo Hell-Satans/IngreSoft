@@ -2,8 +2,14 @@ package com.UdeA.IngreSoft.Entidad;
 
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
-public class Empleado {
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name="Empleado")
+public class Empleado {
+    @Id
+    @Column(unique = true, length = 30)
     private String nombre;
     private String Idempleado;
     private String telefono;
@@ -17,6 +23,9 @@ public class Empleado {
         this.telefono = telefono;
         this.cargo = cargo;
         this.correo = correo;
+    }
+
+    public Empleado() {
     }
 
     public String getNombre() {
@@ -57,5 +66,16 @@ public class Empleado {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", Idempleado='" + Idempleado + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", correo='" + correo + '\'' +
+                '}';
     }
 }
