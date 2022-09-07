@@ -1,5 +1,7 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.swing.*;
@@ -12,6 +14,7 @@ public class Empresa {
     @Id
     @Column(unique = true, length = 30)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GenericGenerator(name="system-uuid", strategy = "uuid")
     private String Id;
     @Column(unique = true, length = 100)
     private String nombre;

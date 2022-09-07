@@ -10,22 +10,52 @@ import java.util.Optional;
 @Service
 public class EmpresaServicios {
 
-    private EmpresaRepositorio EmpresaRepo;
+    private EmpresaRepositorio empresaRepo;
 
-    public Empresa crearEmpresa(Empresa empresa) {
-        return EmpresaRepo.save(empresa);
+    public EmpresaServicios(EmpresaRepositorio empresaRepo) {
+        this.empresaRepo = empresaRepo;
+    }
+    public List<Empresa> listarEmpresas(){
+        return (List<Empresa>)empresaRepo.findAll();
+    }
+    public Optional<Empresa> buscarEmpresa(String Id) {
+        return empresaRepo.findById(Id);
     }
 
-    public List<Empresa> getAllEmpresas(){
-        return EmpresaRepo.findAll();
+    public String agregarEmpresa(Empresa empresa) {
+        if (!buscarEmpresa(empresa.getId()).isPresent()) {
+            empresaRepo.save(empresa);
+            return "Empresa registrada con éxito";
+        } else {
+            return "La empresa ya existe";
+        }
     }
 
-    public void delete (Empresa empresa){
-        EmpresaRepo.delete(empresa);
+    public String actualizarEmpresa(Empresa empresa){
+        if(buscarEmpresa(empresa.getId()).isPresent()){
+            empresaRepo.save(empresa);
+            return "La empresa se actualizo con éxito";
+        }else{
+            return "La empresa no existe.";
+        }
     }
 
-    public Optional<Empresa> buscarId(String Id) {
-        return EmpresaRepo.findById(Id);
+    public String actualizarDireccion(String id, String direccion){
+        if(buscarEmpresa(id).isPresent()){
+            Empresa empresa=empresaRepo.findById(id).get();
+            empresa.setDireccion(direccion);
+            empresaRepo.save(empresa);
+            return "Direccion Actualizada";
+        }else{
+            return "La empresa no existe";
+        }
     }
-
+    public String eliminarEmpresa(String id){
+        if(buscarEmpresa(id).isPresent()){
+            empresaRepo.deleteById(id);
+            return "Empresa eliminada";
+        }else{
+            return "Empresa no existe";
+        }
+    }
 }
