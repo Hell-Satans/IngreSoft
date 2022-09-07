@@ -3,10 +3,13 @@ package com.UdeA.IngreSoft.Entidad;
 import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
+
+import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
-
+@Table(name="movDinero")
 public class MovDinero {
+
 
     private String id;
     private String concepto;
