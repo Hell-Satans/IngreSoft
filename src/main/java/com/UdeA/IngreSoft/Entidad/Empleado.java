@@ -2,8 +2,14 @@ package com.UdeA.IngreSoft.Entidad;
 
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
-public class Empleado {
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name="Empleado")
+public class Empleado {
+    @Id
+    @Column(unique = true, length = 30)
     private String nombre;
     private String Idempleado;
     private String telefono;
