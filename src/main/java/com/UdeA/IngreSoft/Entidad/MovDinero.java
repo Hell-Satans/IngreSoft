@@ -3,10 +3,10 @@ package com.UdeA.IngreSoft.Entidad;
 import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
-
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
-
+@Entity
 @Table(name="movDinero")
 public class MovDinero {
 
@@ -14,16 +14,20 @@ public class MovDinero {
 @Column(unique = true, length = 30)
 @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @Column(unique = true, length = 100)
+    @Column(nullable = false, length= 100)
     private String concepto;
     @Column(nullable = false, length = 20)
     private float monto;
-    @Column(unique = true, length = 40)
+    @ManyToOne
+   @JoinColumn(name = "empleadoId")
     private Empleado empleado;
-    @Column(unique = true, length = 30)
+    @ManyToOne
+    @JoinColumn(name = "empresaId")
     private Empresa empresa;
     private Date fecha;
 
+    public MovDinero() {
+    }
 
     public MovDinero(String id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
         this.id = id;

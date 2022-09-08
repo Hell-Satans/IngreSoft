@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 public class EmpleadoControlador {
 
-   /*@GetMapping("/empleado")
+  /* @GetMapping("/empleado")
     public List<Empleado>obtenerEmpleados(){
          Empleado empleado = new Empleado("juan","02","3113120202","gerente","juan@yahoo.com");
         ArrayList<Empleado>empleados=new ArrayList<>();
