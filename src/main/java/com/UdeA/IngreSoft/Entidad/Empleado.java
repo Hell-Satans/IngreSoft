@@ -3,18 +3,26 @@ package com.UdeA.IngreSoft.Entidad;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+@Entity
 @Table(name="Empleado")
 public class Empleado {
+
+    @Column(unique = false, length = 30)
+    private String nombre;
     @Id
     @Column(unique = true, length = 30)
-    private String nombre;
     private String Idempleado;
+    @Column(unique = false, length = 30)
     private String telefono;
+    @Column(unique = false, length = 30)
     private String cargo;
+    @Column(unique = false, length = 30)
     private String correo;
+
+    @Column(unique = false, length = 30)
     private Empresa empleado;
 
     public Empleado(String nombre, String idempleado, String telefono, String cargo, String correo) {
