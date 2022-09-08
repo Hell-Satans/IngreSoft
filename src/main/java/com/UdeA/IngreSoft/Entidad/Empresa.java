@@ -5,6 +5,8 @@ import javax.persistence.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="Empresa")
 public class Empresa {
@@ -21,13 +23,15 @@ public class Empresa {
     private String telefono;
     @Column(unique = true, length = 30)
     private String nit;
-    /*@OneToMany
-    @JoinColumn(name="Empleado")
-    private ArrayList<Empleado> usuarios;
-    @OneToMany
-    @JoinColumn(name="Movimientos")
-    private ArrayList<MovDinero> transacciones;
-    @Column(name = "Fecha Creado")
+
+    @OneToMany(mappedBy = "empresa")
+
+
+    private List<Empleado> usuarios;
+
+    @OneToMany(mappedBy = "empresa")
+    private List<MovDinero> transacciones;
+   /* @Column(name = "Fecha Creado")
     private Date createdAt;
     @Column(name = "Fecha Actualizado")
     private Date updatedAt;*/

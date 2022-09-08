@@ -1,11 +1,7 @@
 package com.UdeA.IngreSoft.Entidad;
 
-import com.UdeA.IngreSoft.Entidad.Empresa;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 @Entity
 @Table(name="Empleado")
 public class Empleado {
@@ -22,8 +18,10 @@ public class Empleado {
     @Column(unique = false, length = 30)
     private String correo;
 
-    @Column(unique = false, length = 30)
-    private Empresa empleado;
+
+    @JoinColumn(name = "empresaId")
+    @ManyToOne
+    private Empresa empresa;
 
     public Empleado(String nombre, String idempleado, String telefono, String cargo, String correo) {
         this.nombre = nombre;
