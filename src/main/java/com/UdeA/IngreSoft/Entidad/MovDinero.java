@@ -4,17 +4,23 @@ import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 
 
-import javax.persistence.Table;
-import java.util.Calendar;
+import javax.persistence.*;
 import java.util.Date;
+
 @Table(name="movDinero")
 public class MovDinero {
 
-
+@Id
+@Column(unique = true, length = 30)
+@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    @Column(unique = true, length = 100)
     private String concepto;
+    @Column(nullable = false, length = 20)
     private float monto;
+    @Column(unique = true, length = 40)
     private Empleado empleado;
+    @Column(unique = true, length = 30)
     private Empresa empresa;
     private Date fecha;
 
