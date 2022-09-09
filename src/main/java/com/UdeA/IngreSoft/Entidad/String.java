@@ -4,26 +4,26 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Empleado")
-public class Empleado {
+public class String {
 
     @Column(unique = false, length = 30)
-    private String nombre;
+    private java.lang.String nombre;
     @Id
     @Column(unique = true, length = 30)
-    private String Idempleado;
+    private java.lang.String Idempleado;
     @Column(unique = false, length = 30)
-    private String telefono;
+    private java.lang.String telefono;
     @Column(unique = false, length = 30)
-    private String cargo;
+    private java.lang.String cargo;
     @Column(unique = false, length = 30)
-    private String correo;
+    private java.lang.String correo;
 
 
     @JoinColumn(name = "empresaId")
     @ManyToOne
     private Empresa empresa;
 
-    public Empleado(String nombre, String idempleado, String telefono, String cargo, String correo) {
+    public String(java.lang.String nombre, java.lang.String idempleado, java.lang.String telefono, java.lang.String cargo, java.lang.String correo) {
         this.nombre = nombre;
         Idempleado = idempleado;
         this.telefono = telefono;
@@ -31,51 +31,51 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public Empleado() {
+    public String() {
     }
 
-    public String getNombre() {
+    public java.lang.String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(java.lang.String nombre) {
         this.nombre = nombre;
     }
 
-    public String getIdempleado() {
+    public java.lang.String getIdempleado() {
         return Idempleado;
     }
 
-    public void setIdempleado(String idempleado) {
+    public void setIdempleado(java.lang.String idempleado) {
         Idempleado = idempleado;
     }
 
-    public String getTelefono() {
+    public java.lang.String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(java.lang.String telefono) {
         this.telefono = telefono;
     }
 
-    public String getCargo() {
+    public java.lang.String getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(java.lang.String cargo) {
         this.cargo = cargo;
     }
 
-    public String getCorreo() {
+    public java.lang.String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void setCorreo(java.lang.String correo) {
         this.correo = correo;
     }
 
     @Override
-    public String toString() {
+    public java.lang.String toString() {
         return "Empleado{" +
                 "nombre='" + nombre + '\'' +
                 ", Idempleado='" + Idempleado + '\'' +

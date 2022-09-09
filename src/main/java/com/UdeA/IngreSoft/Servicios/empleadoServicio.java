@@ -1,11 +1,9 @@
 package com.UdeA.IngreSoft.Servicios;
 
-import com.UdeA.IngreSoft.Entidad.Empleado;
-import com.UdeA.IngreSoft.Entidad.Empresa;
+import com.UdeA.IngreSoft.Entidad.String;
 import com.UdeA.IngreSoft.Repositorio.empleadoRepositorio;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,10 +14,10 @@ public class empleadoServicio {
     public empleadoServicio(empleadoRepositorio repositorio) {
         this.repositorio = repositorio;
     }
-    public List<Empleado> listaEmpleados(){ return (List<Empleado>)repositorio.findAll();}//Consutar todos los empleados
-    public Optional<Empleado> buscarEmpleado(String Idempleado) {return repositorio.findById(Idempleado); }
+    public List<String> listaEmpleados(){ return (List<String>)repositorio.findAll();}//Consutar todos los empleados
+    public Optional<String> buscarEmpleado(java.lang.String Idempleado) {return repositorio.findById(Idempleado); }
 
-    public String agregarEmpleado(Empleado empleado) {
+    public java.lang.String agregarEmpleado(String empleado) {
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()) {
             repositorio.save(empleado);
             return "El empleado a sido registrado con éxito";
@@ -28,7 +26,7 @@ public class empleadoServicio {
         }
     }
 
-    public String actualizarEmpleado(Empleado empleado){
+    public java.lang.String actualizarEmpleado(String empleado){
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()){
             repositorio.save(empleado);
             return "El empleado  se actualizo con éxito";
@@ -37,9 +35,9 @@ public class empleadoServicio {
         }
     }
 
-    public String actualizarTelefono(String id, String telefono){
+    public java.lang.String actualizarTelefono(java.lang.String id, java.lang.String telefono){
         if(buscarEmpleado(id).isPresent()){
-            Empleado empleado=repositorio.findById(id).get();
+            String empleado=repositorio.findById(id).get();
             empleado.setTelefono(telefono);
             repositorio.save(empleado);
             return "Telefono Actualizado";
@@ -48,7 +46,7 @@ public class empleadoServicio {
         }
     }
 
-    public String eliminarEmpleado(String id){
+    public java.lang.String eliminarEmpleado(java.lang.String id){
         if(buscarEmpleado(id).isPresent()){
             repositorio.deleteById(id);
             return "Empleaso  eliminado";
