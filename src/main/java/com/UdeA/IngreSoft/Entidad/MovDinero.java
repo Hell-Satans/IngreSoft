@@ -1,12 +1,8 @@
 package com.UdeA.IngreSoft.Entidad;
 
-import com.UdeA.IngreSoft.Entidad.Empleado;
-import com.UdeA.IngreSoft.Entidad.Empresa;
-
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="movDinero")
@@ -17,12 +13,12 @@ public class MovDinero {
 @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false, length= 100)
-    private String concepto;
+    private java.lang.String concepto;
     @Column(nullable = false, length = 20)
     private float monto;
     @ManyToOne
    @JoinColumn(name = "empleadoId")
-    private Empleado empleado;
+    private String empleado;
     @ManyToOne
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
@@ -34,7 +30,7 @@ public class MovDinero {
     public MovDinero() {
     }
 
-    public MovDinero(int id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
+    public MovDinero(int id, java.lang.String concepto, float monto, String empleado, Empresa empresa, Date fecha) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -51,11 +47,11 @@ public class MovDinero {
         this.id = id;
     }
 
-    public String getConcepto() {
+    public java.lang.String getConcepto() {
         return concepto;
     }
 
-    public void setConcepto(String concepto) {
+    public void setConcepto(java.lang.String concepto) {
         this.concepto = concepto;
     }
 
@@ -67,11 +63,11 @@ public class MovDinero {
         this.monto = monto;
     }
 
-    public Empleado getEmpleado() {
+    public String getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Empleado empleado) {
+    public void setEmpleado(String empleado) {
         this.empleado = empleado;
     }
 
