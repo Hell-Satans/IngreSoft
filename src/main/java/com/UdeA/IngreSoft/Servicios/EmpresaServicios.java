@@ -18,7 +18,7 @@ public class EmpresaServicios {
     public List<Empresa> listarEmpresas(){
         return (List<Empresa>)empresaRepo.findAll();
     }
-    public Optional<Empresa> buscarEmpresa(String Id) {
+    public Optional<Empresa> buscarEmpresa(int Id) {
         return empresaRepo.findById(Id);
     }
 
@@ -40,7 +40,7 @@ public class EmpresaServicios {
         }
     }
 
-    public String actualizarDireccion(String id, String direccion){
+    public String actualizarDireccion(int id, String direccion){
         if(buscarEmpresa(id).isPresent()){
             Empresa empresa=empresaRepo.findById(id).get();
             empresa.setDireccion(direccion);
@@ -50,7 +50,7 @@ public class EmpresaServicios {
             return "La empresa no existe";
         }
     }
-    public String eliminarEmpresa(String id){
+    public String eliminarEmpresa(int id){
         if(buscarEmpresa(id).isPresent()){
             empresaRepo.deleteById(id);
             return "Empresa eliminada";

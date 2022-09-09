@@ -27,7 +27,7 @@ public class EmpresaControlador {
         return ResponseEntity.ok(empresaServicios.listarEmpresas());
     }
     @GetMapping("/ConsultarEmpresa/{id}")
-    private ResponseEntity<Optional<Empresa>> listarId(@PathVariable ("id") String id){
+    private ResponseEntity<Optional<Empresa>> listarId(@PathVariable ("id") int id){
         return ResponseEntity.ok(empresaServicios.buscarEmpresa(id));
     }
     @PostMapping("/AgregarEmpresa")
@@ -41,12 +41,12 @@ public class EmpresaControlador {
     }
 
     @PatchMapping("/ActualizarDir/{id}/{dir}")
-    public String actualizarDir(@PathVariable("id") String id, @PathVariable ("dir") String direccion){
+    public String actualizarDir(@PathVariable("id") int id, @PathVariable ("dir") String direccion){
         return empresaServicios.actualizarDireccion(id, direccion);
     }
 
-    @DeleteMapping("/EliminarEmpresa")
-    private ResponseEntity<String> eliminarEmpresa(@PathVariable("id") String id){
+    @DeleteMapping("/EliminarEmpresa/{id}")
+    private ResponseEntity<String> eliminarEmpresa(@PathVariable("id") int id){
 
         return ResponseEntity.ok(empresaServicios.eliminarEmpresa(id));
     }

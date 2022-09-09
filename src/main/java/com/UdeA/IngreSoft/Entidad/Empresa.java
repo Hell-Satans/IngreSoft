@@ -2,9 +2,6 @@ package com.UdeA.IngreSoft.Entidad;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,7 +11,7 @@ public class Empresa {
     @Id
     @Column(unique = true, length = 30)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String Id;
+    private int id;
     @Column(unique = true, length = 100)
     private String nombre;
     @Column(nullable = false, length = 80)
@@ -39,8 +36,8 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(String id, String nombre, String direccion, String telefono, String nit) {
-        Id = id;
+    public Empresa(int id, String nombre, String direccion, String telefono, String nit) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -48,12 +45,12 @@ public class Empresa {
 
     }
 
-    public String getId() {
-        return Id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -123,7 +120,7 @@ public class Empresa {
     @Override
     public String toString() {
         return "Empresa{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +
