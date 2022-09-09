@@ -15,7 +15,7 @@ public class MovDinero {
 @Id
 @Column(unique = true, length = 30)
 @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
     @Column(nullable = false, length= 100)
     private String concepto;
     @Column(nullable = false, length = 20)
@@ -34,7 +34,7 @@ public class MovDinero {
     public MovDinero() {
     }
 
-    public MovDinero(String id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
+    public MovDinero(int id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -43,11 +43,11 @@ public class MovDinero {
         this.fecha = fecha;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
