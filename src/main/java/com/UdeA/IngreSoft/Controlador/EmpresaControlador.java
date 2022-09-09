@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping("/api/empresa")
+//@RequestMapping("/enterprises")
 public class EmpresaControlador {
 
    @Autowired
@@ -22,15 +23,15 @@ public class EmpresaControlador {
         this.empresaServicios = empresaServicios;
     }
 
-    @GetMapping("/ListarEmpresas")
+    @GetMapping("/enterprises")
     private ResponseEntity<List<Empresa>> listarEmpresa(){
         return ResponseEntity.ok(empresaServicios.listarEmpresas());
     }
-    @GetMapping("/ConsultarEmpresa/{id}")
+    @GetMapping("/enterprises/{id}")
     private ResponseEntity<Optional<Empresa>> listarId(@PathVariable ("id") int id){
         return ResponseEntity.ok(empresaServicios.buscarEmpresa(id));
     }
-    @PostMapping("/AgregarEmpresa")
+    @PostMapping("/enterprises")
     private String agregarEmpresa(@RequestBody Empresa empresa){
         return empresaServicios.agregarEmpresa(empresa);
     }
@@ -45,7 +46,12 @@ public class EmpresaControlador {
         return empresaServicios.actualizarDireccion(id, direccion);
     }
 
-    @DeleteMapping("/EliminarEmpresa/{id}")
+    @PatchMapping("/enterprises/{id}")
+    public Empresa actualizarCampo(@PathVariable("id")int id, @RequestBody Map<Object, Object> empresaMap){
+        return empresaServicios.actualizarCampo(id,empresaMap);
+    }
+
+    @DeleteMapping("/enterprises/{id}")
     private ResponseEntity<String> eliminarEmpresa(@PathVariable("id") int id){
 
         return ResponseEntity.ok(empresaServicios.eliminarEmpresa(id));

@@ -2,6 +2,7 @@ package com.UdeA.IngreSoft.Entidad;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,17 +23,21 @@ public class Empresa {
     private java.lang.String nit;
 
     @OneToMany(mappedBy = "empresa")
-
-
-    private List<String> usuarios;
-
+    private List<Empleado> usuarios;
+ 
     @OneToMany(mappedBy = "empresa")
     private List<MovDinero> transacciones;
-   /* @Column(name = "Fecha Creado")
+    @Temporal(TemporalType.DATE)
+    @Column//(nullable = false)
     private Date createdAt;
-    @Column(name = "Fecha Actualizado")
-    private Date updatedAt;*/
+    @Temporal(TemporalType.DATE)
+    @Column
+    private Date updatedAt;
 
+    @PrePersist
+    public void prePersist(){
+        this.createdAt=new Date();
+    }
     public Empresa() {
     }
 
@@ -85,19 +90,19 @@ public class Empresa {
         this.nit = nit;
     }
 
-   /* public ArrayList<Empleado> getUsuarios() {
+    public List<Empleado> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(ArrayList<Empleado> usuarios) {
+    public void setUsuarios(List<Empleado> usuarios) {
         this.usuarios = usuarios;
     }
 
-    public ArrayList<MovDinero> getTransacciones() {
+    public List<MovDinero> getTransacciones() {
         return transacciones;
     }
 
-    public void setTransacciones(ArrayList<MovDinero> transacciones) {
+    public void setTransacciones(List<MovDinero> transacciones) {
         this.transacciones = transacciones;
     }
 
@@ -115,16 +120,19 @@ public class Empresa {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }*/
-
+    }
     @Override
     public java.lang.String toString() {
         return "Empresa{" +
-                "Id=" + id +
+                "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", nit='" + nit + '\'' +
+                ", usuarios=" + usuarios +
+                ", transacciones=" + transacciones +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
