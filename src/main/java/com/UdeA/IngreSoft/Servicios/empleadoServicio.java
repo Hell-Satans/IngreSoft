@@ -22,7 +22,7 @@ public class empleadoServicio {
     public String agregarEmpleado(Empleado empleado) {
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()) {
             repositorio.save(empleado);
-            return "El empleadoa sido registrado con éxito";
+            return "El empleado a sido registrado con éxito";
         } else {
             return "El empleado ya existe";
         }
