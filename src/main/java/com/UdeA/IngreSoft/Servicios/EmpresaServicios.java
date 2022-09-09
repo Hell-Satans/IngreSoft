@@ -3,8 +3,11 @@ package com.UdeA.IngreSoft.Servicios;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.UdeA.IngreSoft.Repositorio.EmpresaRepositorio;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -49,6 +52,16 @@ public class EmpresaServicios {
         }else{
             return "La empresa no existe";
         }
+    }
+
+    public Empresa actualizarCampo(int id, Map<Object,Object> empresaMap){
+        Empresa empresa=empresaRepo.findById(id).get();
+        empresaMap.forEach((key,value)->{
+            Field campo= ReflectionUtils.findField(Empresa.class,(String)key);
+            campo.setAccessible(true);
+            ReflectionUtils.setField(campo, empresa, value);
+        });
+        return empresaRepo.save(empresa);
     }
     public String eliminarEmpresa(int id){
         if(buscarEmpresa(id).isPresent()){
