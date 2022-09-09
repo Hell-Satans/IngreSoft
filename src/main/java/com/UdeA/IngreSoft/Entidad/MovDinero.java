@@ -6,6 +6,8 @@ import com.UdeA.IngreSoft.Entidad.Empresa;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="movDinero")
 public class MovDinero {
@@ -24,7 +26,10 @@ public class MovDinero {
     @ManyToOne
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
+    @Column(nullable = false)
     private Date fecha;
+
+
 
     public MovDinero() {
     }
