@@ -1,6 +1,7 @@
 package com.UdeA.IngreSoft.Servicios;
 
 
+import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.UdeA.IngreSoft.Entidad.MovDinero;
 import com.UdeA.IngreSoft.Repositorio.RepositorioMovD;
@@ -32,6 +33,16 @@ public class ServiciosMovD {
     movimientoDinero.setEmpresa(empresa);
     return MovdRepositorio.save(movimientoDinero);
 
+    }
+
+    
+
+    public MovDinero actualizarMovDinero(int id) {
+        Empresa empresa = new Empresa();
+        empresa.setId(id);
+        MovDinero movimientoDinero = null;
+        movimientoDinero.setEmpresa(empresa);
+        return MovdRepositorio.save(movimientoDinero);
     }
 }
 
