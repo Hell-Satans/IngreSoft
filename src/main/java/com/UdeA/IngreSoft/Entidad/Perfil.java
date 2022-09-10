@@ -3,14 +3,14 @@ package com.UdeA.IngreSoft.Entidad;
 public class Perfil {
     private java.lang.String idPerfil;
     private java.lang.String imagenPerfil;
-    private String telefono;
+    private Empleado telefono;
     private java.lang.String usuarioPerfil;
-    private String cargo;
+    private Empleado cargo;
 
     public Perfil() {
     }
 
-    public Perfil(java.lang.String idPerfil, java.lang.String imagenPerfil, String telefono, java.lang.String usuarioPerfil, String cargo) {
+    public Perfil(java.lang.String idPerfil, java.lang.String imagenPerfil, Empleado telefono, java.lang.String usuarioPerfil, Empleado cargo) {
         this.idPerfil = idPerfil;
         this.imagenPerfil = imagenPerfil;
         this.telefono = telefono;
@@ -34,11 +34,11 @@ public class Perfil {
         this.imagenPerfil = imagenPerfil;
     }
 
-    public String getTelefono() {
+    public Empleado getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Empleado telefono) {
         this.telefono = telefono;
     }
 
@@ -50,11 +50,11 @@ public class Perfil {
         this.usuarioPerfil = usuarioPerfil;
     }
 
-    public String getCargo() {
+    public Empleado getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Empleado cargo) {
         this.cargo = cargo;
     }
 

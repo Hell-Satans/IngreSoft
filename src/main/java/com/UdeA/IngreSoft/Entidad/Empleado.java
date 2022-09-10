@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Empleado")
-public class String {
+public class Empleado {
 
     @Column(unique = false, length = 30)
     private java.lang.String nombre;
@@ -23,7 +23,7 @@ public class String {
     @ManyToOne
     private Empresa empresa;
 
-    public String(java.lang.String nombre, java.lang.String idempleado, java.lang.String telefono, java.lang.String cargo, java.lang.String correo) {
+    public Empleado(java.lang.String nombre, java.lang.String idempleado, java.lang.String telefono, java.lang.String cargo, java.lang.String correo) {
         this.nombre = nombre;
         Idempleado = idempleado;
         this.telefono = telefono;
@@ -31,7 +31,7 @@ public class String {
         this.correo = correo;
     }
 
-    public String() {
+    public Empleado() {
     }
 
     public java.lang.String getNombre() {

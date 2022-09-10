@@ -1,6 +1,6 @@
 package com.UdeA.IngreSoft.Servicios;
 
-import com.UdeA.IngreSoft.Entidad.String;
+import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Repositorio.empleadoRepositorio;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ public class empleadoServicio {
     public empleadoServicio(empleadoRepositorio repositorio) {
         this.repositorio = repositorio;
     }
-    public List<String> listaEmpleados(){ return (List<String>)repositorio.findAll();}//Consutar todos los empleados
-    public Optional<String> buscarEmpleado(java.lang.String Idempleado) {return repositorio.findById(Idempleado); }
+    public List<Empleado> listaEmpleados(){ return (List<Empleado>)repositorio.findAll();}//Consutar todos los empleados
+    public Optional<Empleado> buscarEmpleado(java.lang.String Idempleado) {return repositorio.findById(Idempleado); }
 
-    public java.lang.String agregarEmpleado(String empleado) {
+    public java.lang.String agregarEmpleado(Empleado empleado) {
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()) {
             repositorio.save(empleado);
             return "El empleado a sido registrado con éxito";
@@ -26,7 +26,7 @@ public class empleadoServicio {
         }
     }
 
-    public java.lang.String actualizarEmpleado(String empleado){
+    public java.lang.String actualizarEmpleado(Empleado empleado){
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()){
             repositorio.save(empleado);
             return "El empleado  se actualizo con éxito";
@@ -37,7 +37,7 @@ public class empleadoServicio {
 
     public java.lang.String actualizarTelefono(java.lang.String id, java.lang.String telefono){
         if(buscarEmpleado(id).isPresent()){
-            String empleado=repositorio.findById(id).get();
+            Empleado empleado=repositorio.findById(id).get();
             empleado.setTelefono(telefono);
             repositorio.save(empleado);
             return "Telefono Actualizado";

@@ -18,7 +18,7 @@ public class MovDinero {
     private float monto;
     @ManyToOne
    @JoinColumn(name = "empleadoId")
-    private String empleado;
+    private Empleado empleado;
     @ManyToOne
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
@@ -30,7 +30,7 @@ public class MovDinero {
     public MovDinero() {
     }
 
-    public MovDinero(int id, java.lang.String concepto, float monto, String empleado, Empresa empresa, Date fecha) {
+    public MovDinero(int id, java.lang.String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -63,11 +63,11 @@ public class MovDinero {
         this.monto = monto;
     }
 
-    public String getEmpleado() {
+    public Empleado getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(String empleado) {
+    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 
