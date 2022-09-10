@@ -1,6 +1,6 @@
 package com.UdeA.IngreSoft.Controlador;
 
-import com.UdeA.IngreSoft.Entidad.String;
+import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Servicios.empleadoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,19 +24,19 @@ public class EmpleadoControlador {
 
 
     @GetMapping("/Listarempleados")
-    public ResponseEntity<List<String>>listaEmpleado(){
+    public ResponseEntity<List<Empleado>>listaEmpleado(){
         return ResponseEntity.ok(servicio.listaEmpleados());
     }
     @GetMapping("/ConsultarEmpleado/{id}")
-    private ResponseEntity<Optional<String>> listarId(@PathVariable("id") java.lang.String id){
+    private ResponseEntity<Optional<Empleado>> listarId(@PathVariable("id") java.lang.String id){
         return ResponseEntity.ok(servicio.buscarEmpleado(id));
     }
   @PostMapping("/AgregarEmpleado")
-  private java.lang.String agregarEmpleado(@RequestBody String empleado){
+  private java.lang.String agregarEmpleado(@RequestBody Empleado empleado){
     return servicio.agregarEmpleado(empleado);
   }
   @PutMapping("/ActualizarEmpleado")
-  public java.lang.String actualizarEmpleado(@RequestBody String empleado){
+  public java.lang.String actualizarEmpleado(@RequestBody Empleado empleado){
     return servicio.actualizarEmpleado(empleado);
   }
   @PatchMapping("/ActualizarTel/{id}/{tel}")
