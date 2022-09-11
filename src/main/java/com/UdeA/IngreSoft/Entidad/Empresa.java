@@ -22,10 +22,10 @@ public class Empresa {
     @Column(unique = true, length = 30)
     private String nit;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Empleado> usuarios;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MovDinero> transacciones;
     @Temporal(TemporalType.DATE)
     @Column//(nullable = false)

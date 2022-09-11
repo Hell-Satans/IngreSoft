@@ -2,6 +2,7 @@ package com.UdeA.IngreSoft.Entidad;
 
 import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -20,9 +21,12 @@ public class MovDinero {
     private String concepto;
     @Column(nullable = false, length = 20)
     private float monto;
+
+    @JsonIgnore
     @ManyToOne
-   @JoinColumn(name = "empleadoId")
+    @JoinColumn(name = "empleadoId")
     private Empleado empleado;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
