@@ -23,6 +23,18 @@ public class ControladorMovD {
     }
 
 
+    @PatchMapping("/enterprises/{id}/movements")
+    public MovDinero actualizarMovDinero (@PathVariable int id ,@RequestBody MovDinero movimientoDinero){
+        return servicio.actualizarMovDinero (id);
+    }
+
+
+
+
+
+
+
+
         }
 
 
