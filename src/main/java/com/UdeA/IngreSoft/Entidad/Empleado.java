@@ -1,5 +1,7 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,81 +9,92 @@ import javax.persistence.*;
 public class Empleado {
 
     @Column(unique = false, length = 30)
-    private java.lang.String nombre;
+    private String nombre;
     @Id
     @Column(unique = true, length = 30)
-    private java.lang.String Idempleado;
+    private int Idempleado;
     @Column(unique = false, length = 30)
-    private java.lang.String telefono;
+    private String telefono;
     @Column(unique = false, length = 30)
-    private java.lang.String cargo;
+    private String cargo;
     @Column(unique = false, length = 30)
-    private java.lang.String correo;
+    private String correo;
 
 
     @JoinColumn(name = "empresaId")
     @ManyToOne
+    @JsonIgnore
     private Empresa empresa;
-
-    public Empleado(java.lang.String nombre, java.lang.String idempleado, java.lang.String telefono, java.lang.String cargo, java.lang.String correo) {
-        this.nombre = nombre;
-        Idempleado = idempleado;
-        this.telefono = telefono;
-        this.cargo = cargo;
-        this.correo = correo;
-    }
 
     public Empleado() {
     }
 
-    public java.lang.String getNombre() {
+    public Empleado(String nombre, int idempleado, String telefono, String cargo, String correo, Empresa empresa) {
+        this.nombre = nombre;
+        this.Idempleado = idempleado;
+        this.telefono = telefono;
+        this.cargo = cargo;
+        this.correo = correo;
+        this.empresa = empresa;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(java.lang.String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public java.lang.String getIdempleado() {
+    public int getIdempleado() {
         return Idempleado;
     }
 
-    public void setIdempleado(java.lang.String idempleado) {
-        Idempleado = idempleado;
+    public void setIdempleado(int idempleado) {
+        this.Idempleado = idempleado;
     }
 
-    public java.lang.String getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(java.lang.String telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public java.lang.String getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(java.lang.String cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
-    public java.lang.String getCorreo() {
+    public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(java.lang.String correo) {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Empleado{" +
                 "nombre='" + nombre + '\'' +
-                ", Idempleado='" + Idempleado + '\'' +
+                ", Idempleado=" + Idempleado +
                 ", telefono='" + telefono + '\'' +
                 ", cargo='" + cargo + '\'' +
                 ", correo='" + correo + '\'' +
+                ", empresa=" + empresa +
                 '}';
     }
 }
