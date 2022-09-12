@@ -1,8 +1,13 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import com.UdeA.IngreSoft.Entidad.Empleado;
+import com.UdeA.IngreSoft.Entidad.Empresa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="movDinero")
@@ -13,12 +18,15 @@ public class MovDinero {
 @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false, length= 100)
-    private java.lang.String concepto;
+    private String concepto;
     @Column(nullable = false, length = 20)
     private float monto;
+
+    @JsonIgnore
     @ManyToOne
-   @JoinColumn(name = "empleadoId")
+    @JoinColumn(name = "empleadoId")
     private Empleado empleado;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
@@ -30,7 +38,7 @@ public class MovDinero {
     public MovDinero() {
     }
 
-    public MovDinero(int id, java.lang.String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
+    public MovDinero(int id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -47,11 +55,11 @@ public class MovDinero {
         this.id = id;
     }
 
-    public java.lang.String getConcepto() {
+    public String getConcepto() {
         return concepto;
     }
 
-    public void setConcepto(java.lang.String concepto) {
+    public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
 

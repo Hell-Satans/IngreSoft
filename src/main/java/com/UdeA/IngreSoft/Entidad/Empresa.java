@@ -14,18 +14,18 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(unique = true, length = 100)
-    private java.lang.String nombre;
+    private String nombre;
     @Column(nullable = false, length = 80)
-    private java.lang.String direccion;
+    private String direccion;
     @Column(nullable = false, length = 30)
-    private java.lang.String telefono;
+    private String telefono;
     @Column(unique = true, length = 30)
-    private java.lang.String nit;
+    private String nit;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Empleado> usuarios;
- 
-    @OneToMany(mappedBy = "empresa")
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MovDinero> transacciones;
     @Temporal(TemporalType.DATE)
     @Column//(nullable = false)
@@ -41,7 +41,7 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(int id, java.lang.String nombre, java.lang.String direccion, java.lang.String telefono, java.lang.String nit) {
+    public Empresa(int id, String nombre, String direccion, String telefono, String nit) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -58,35 +58,35 @@ public class Empresa {
         this.id = id;
     }
 
-    public java.lang.String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(java.lang.String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public java.lang.String getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(java.lang.String direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public java.lang.String getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(java.lang.String telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public java.lang.String getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(java.lang.String nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 
@@ -122,7 +122,7 @@ public class Empresa {
         this.updatedAt = updatedAt;
     }
     @Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Empresa{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
