@@ -28,7 +28,7 @@ public class EmpleadoControlador {
         return ResponseEntity.ok(servicio.listaEmpleados());
     }
     @GetMapping("/ConsultarEmpleado/{id}")
-    private ResponseEntity<Optional<Empleado>> listarId(@PathVariable("id") java.lang.String id){
+    private ResponseEntity<Optional<Empleado>> listarId(@PathVariable("id") int id){
         return ResponseEntity.ok(servicio.buscarEmpleado(id));
     }
   @PostMapping("/AgregarEmpleado")
@@ -40,11 +40,11 @@ public class EmpleadoControlador {
     return servicio.actualizarEmpleado(empleado);
   }
   @PatchMapping("/ActualizarTel/{id}/{tel}")
-  public java.lang.String actualizarTel(@PathVariable("id") java.lang.String id, @PathVariable ("tel") java.lang.String telefono){
+  public java.lang.String actualizarTel(@PathVariable("id") int id, @PathVariable ("tel") java.lang.String telefono){
     return servicio.actualizarTelefono(id, telefono);
   }
   @DeleteMapping("/EliminarEmpleado")
-  private ResponseEntity<java.lang.String> eliminarEmpleado(@PathVariable("id") java.lang.String id){
+  private ResponseEntity<java.lang.String> eliminarEmpleado(@PathVariable("id") int id){
 
     return ResponseEntity.ok(servicio.eliminarEmpleado(id));
   }

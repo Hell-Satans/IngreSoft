@@ -15,7 +15,7 @@ public class empleadoServicio {
         this.repositorio = repositorio;
     }
     public List<Empleado> listaEmpleados(){ return (List<Empleado>)repositorio.findAll();}//Consutar todos los empleados
-    public Optional<Empleado> buscarEmpleado(java.lang.String Idempleado) {return repositorio.findById(Idempleado); }
+    public Optional<Empleado> buscarEmpleado(int Idempleado) {return repositorio.findById(Idempleado); }
 
     public java.lang.String agregarEmpleado(Empleado empleado) {
         if (!buscarEmpleado(empleado.getIdempleado()).isPresent()) {
@@ -35,7 +35,7 @@ public class empleadoServicio {
         }
     }
 
-    public java.lang.String actualizarTelefono(java.lang.String id, java.lang.String telefono){
+    public String actualizarTelefono(int id, java.lang.String telefono){
         if(buscarEmpleado(id).isPresent()){
             Empleado empleado=repositorio.findById(id).get();
             empleado.setTelefono(telefono);
@@ -46,7 +46,7 @@ public class empleadoServicio {
         }
     }
 
-    public java.lang.String eliminarEmpleado(java.lang.String id){
+    public java.lang.String eliminarEmpleado(int id){
         if(buscarEmpleado(id).isPresent()){
             repositorio.deleteById(id);
             return "Empleaso  eliminado";
