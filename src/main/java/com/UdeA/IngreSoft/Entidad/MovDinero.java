@@ -15,7 +15,7 @@ public class MovDinero {
 
 @Id
 @Column(unique = true, length = 30)
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, length= 100)
     private String concepto;
@@ -23,17 +23,30 @@ public class MovDinero {
     private float monto;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "empleadoId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "empleadoId", referencedColumnName = "Idempleado",nullable = false)
     private Empleado empleado;
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "empresaId")
-    private Empresa empresa;
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "empresaId", referencedColumnName = "id",nullable = false)
+    private Empresa empresa;C
+    @Temporal(TemporalType.DATE)
+    @Column
     private Date fecha;
 
+    @Temporal(TemporalType.DATE)
+    @Column
+    private Date update;
 
+
+    @PrePersist
+    public void prePersist(){
+        this.fecha=new Date();
+    }
+    //@PrePersist
+    public void prePersistUpdate(){
+        this.update=new Date();
+    }
 
     public MovDinero() {
     }

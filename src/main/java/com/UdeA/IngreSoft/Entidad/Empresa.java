@@ -1,5 +1,8 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
@@ -23,6 +26,7 @@ public class Empresa {
     private String nit;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private List<Empleado> usuarios;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -38,8 +42,14 @@ public class Empresa {
     public void prePersist(){
         this.createdAt=new Date();
     }
+    //@PrePersist
+    public void prePersistUpdate(){
+        this.updatedAt=new Date();
+    }
     public Empresa() {
     }
+
+
 
     public Empresa(int id, String nombre, String direccion, String telefono, String nit) {
         this.id = id;
