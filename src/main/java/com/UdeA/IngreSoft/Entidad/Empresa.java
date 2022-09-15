@@ -13,7 +13,6 @@ import java.util.List;
 public class Empresa {
 
     @Id
-    @Column(unique = true, length = 30)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(unique = true, length = 100)

@@ -13,9 +13,9 @@ import java.util.List;
 @Table(name="movDinero")
 public class MovDinero {
 
-@Id
-@Column(unique = true, length = 30)
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, length= 100)
     private String concepto;
@@ -24,12 +24,12 @@ public class MovDinero {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "empleadoId", referencedColumnName = "Idempleado",nullable = false)
+    @JoinColumn(name = "empleadoId", referencedColumnName = "idempleado",nullable = false)
     private Empleado empleado;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "empresaId", referencedColumnName = "id",nullable = false)
-    private Empresa empresa;C
+    private Empresa empresa;
     @Temporal(TemporalType.DATE)
     @Column
     private Date fecha;
@@ -106,5 +106,18 @@ public class MovDinero {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "MovDinero{" +
+                "id=" + id +
+                ", concepto='" + concepto + '\'' +
+                ", monto=" + monto +
+                ", empleado=" + empleado +
+                ", empresa=" + empresa +
+                ", fecha=" + fecha +
+                ", update=" + update +
+                '}';
     }
 }
