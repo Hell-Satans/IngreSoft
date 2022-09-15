@@ -16,7 +16,6 @@ import java.util.Optional;
 //@RequestMapping("/enterprises")
 public class EmpresaControlador {
 
-   @Autowired
     private EmpresaServicios empresaServicios;
 
     public EmpresaControlador(EmpresaServicios empresaServicios) {
@@ -31,12 +30,21 @@ public class EmpresaControlador {
     private ResponseEntity<Optional<Empresa>> listarId(@PathVariable ("id") int id){
         return ResponseEntity.ok(empresaServicios.buscarEmpresa(id));
     }
-    @PostMapping("/enterprises")
+    @PostMapping("/empresas")
     private String agregarEmpresa(@RequestBody Empresa empresa){
         return empresaServicios.agregarEmpresa(empresa);
     }
 
-    @PutMapping("/ActualizarEmpresa")
+    @PostMapping("/enterprises")
+    public ResponseEntity<Empresa> saveEmpresa(@RequestBody Empresa empresa) {
+        try {
+            Empresa empresaSave = empresaServicios.save(empresa);
+            return ResponseEntity.created(new URI("/empresas" + empresaSave.getId())).body(empresaSave);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+    /*@PutMapping("/ActualizarEmpresa")
     public String actualizarEmpresa(@RequestBody Empresa empresa){
         return empresaServicios.actualizarEmpresa(empresa);
     }
@@ -44,7 +52,7 @@ public class EmpresaControlador {
     @PatchMapping("/ActualizarDir/{id}/{dir}")
     public String actualizarDir(@PathVariable("id") int id, @PathVariable ("dir") String direccion){
         return empresaServicios.actualizarDireccion(id, direccion);
-    }
+    }*/
 
     @PatchMapping("/enterprises/{id}")
     public Empresa actualizarCampo(@PathVariable("id")int id, @RequestBody Map<Object, Object> empresaMap){

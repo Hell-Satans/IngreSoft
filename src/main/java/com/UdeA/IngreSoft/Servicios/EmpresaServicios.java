@@ -34,10 +34,14 @@ public class EmpresaServicios {
         }
     }
 
+    public <S extends Empresa> S save(S entidad){
+        return empresaRepo.save(entidad);
+    }
+
     public String actualizarEmpresa(Empresa empresa){
         if(buscarEmpresa(empresa.getId()).isPresent()){
             empresaRepo.save(empresa);
-            return "La empresa se actualizo con éxito";
+            return "La empresa se actualizó con éxito";
         }else{
             return "La empresa no existe.";
         }

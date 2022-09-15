@@ -3,48 +3,49 @@ package com.UdeA.IngreSoft.Entidad;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="Empleado")
 public class Empleado {
 
-    @Column(unique = false, length = 30)
-    private String nombre;
     @Id
-    @Column(unique = true, length = 30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Idempleado;
-    @Column(unique = false, length = 30)
-    private String telefono;
-    @Column(unique = false, length = 30)
-    private String cargo;
+
     @Column(unique = false, length = 30)
     private String correo;
-
-
     @JoinColumn(name = "empresaId")
     @ManyToOne
     @JsonIgnore
     private Empresa empresa;
+    @OneToMany(mappedBy = "empleado",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MovDinero> transacciones;
+    @Temporal(TemporalType.DATE)
+    @Column//(nullable = false)
+    private Date createdAt;
+    @Temporal(TemporalType.DATE)
+    @Column
+    private Date updatedAt;
+
+    @PrePersist
+    public void prePersist(){
+        this.createdAt=new Date();
+    }
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, int idempleado, String telefono, String cargo, String correo, Empresa empresa) {
-        this.nombre = nombre;
-        this.Idempleado = idempleado;
-        this.telefono = telefono;
-        this.cargo = cargo;
+    public Empleado(int idempleado, String correo, Empresa empresa, List<MovDinero> transacciones, Date createdAt, Date updatedAt) {
+        Idempleado = idempleado;
         this.correo = correo;
         this.empresa = empresa;
+        this.transacciones = transacciones;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public int getIdempleado() {
         return Idempleado;
@@ -52,22 +53,6 @@ public class Empleado {
 
     public void setIdempleado(int idempleado) {
         this.Idempleado = idempleado;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
     }
 
     public String getCorreo() {
@@ -89,12 +74,12 @@ public class Empleado {
     @Override
     public String toString() {
         return "Empleado{" +
-                "nombre='" + nombre + '\'' +
-                ", Idempleado=" + Idempleado +
-                ", telefono='" + telefono + '\'' +
-                ", cargo='" + cargo + '\'' +
+                "Idempleado=" + Idempleado +
                 ", correo='" + correo + '\'' +
                 ", empresa=" + empresa +
+                ", transacciones=" + transacciones +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
