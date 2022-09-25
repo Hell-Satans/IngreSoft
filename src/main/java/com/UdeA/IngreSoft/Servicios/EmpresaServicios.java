@@ -2,62 +2,47 @@ package com.UdeA.IngreSoft.Servicios;
 
 import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.UdeA.IngreSoft.Repositorio.EmpresaRepositorio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class EmpresaServicios {
-
-    private EmpresaRepositorio empresaRepo;
+    @Autowired
+    EmpresaRepositorio empresaRepo;
 
     public EmpresaServicios(EmpresaRepositorio empresaRepo) {
         this.empresaRepo = empresaRepo;
     }
     public List<Empresa> listarEmpresas(){
-        return (List<Empresa>)empresaRepo.findAll();
+        List<Empresa> empresaList = new ArrayList<>();
+        empresaRepo.findAll().forEach(empresa -> empresaList.add(empresa));
+        return empresaList;
     }
-    public Optional<Empresa> buscarEmpresa(int Id) {
-        return empresaRepo.findById(Id);
-    }
-
-    public String agregarEmpresa(Empresa empresa) {
-        if (!buscarEmpresa(empresa.getId()).isPresent()) {
-            empresaRepo.save(empresa);
-            return "Empresa registrada con éxito";
-        } else {
-            return "La empresa ya existe";
-        }
+    public Empresa buscarEmpresa(int Id) {
+        return empresaRepo.findById(Id).get();
     }
 
+    public Optional<Empresa> buscarEmpresa1(int id){
+        return empresaRepo.findById(id);
+    }
     public <S extends Empresa> S save(S entidad){
         return empresaRepo.save(entidad);
     }
 
-    public String actualizarEmpresa(Empresa empresa){
-        if(buscarEmpresa(empresa.getId()).isPresent()){
-            empresaRepo.save(empresa);
-            return "La empresa se actualizó con éxito";
-        }else{
-            return "La empresa no existe.";
+    public boolean saveEmpresa(Empresa empresa){
+        Empresa emp=empresaRepo.save(empresa);
+        if (empresaRepo.findById(emp.getId())!=null){
+            return true;
         }
+        return false;
     }
-
-    public String actualizarDireccion(int id, String direccion){
-        if(buscarEmpresa(id).isPresent()){
-            Empresa empresa=empresaRepo.findById(id).get();
-            empresa.setDireccion(direccion);
-            empresaRepo.save(empresa);
-            return "Direccion Actualizada";
-        }else{
-            return "La empresa no existe";
-        }
-    }
-
     public Empresa actualizarCampo(int id, Map<Object,Object> empresaMap){
         Empresa empresa=empresaRepo.findById(id).get();
         empresaMap.forEach((key,value)->{
@@ -68,7 +53,7 @@ public class EmpresaServicios {
         return empresaRepo.save(empresa);
     }
     public String eliminarEmpresa(int id){
-        if(buscarEmpresa(id).isPresent()){
+        if(buscarEmpresa1(id).isPresent()){
             empresaRepo.deleteById(id);
             return "Empresa eliminada";
         }else{

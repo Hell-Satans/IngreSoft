@@ -38,10 +38,10 @@ public class EmpleadoControlador {
   private java.lang.String agregarEmpleado(@RequestBody Empleado empleado){
     return servicio.agregarEmpleado(empleado);
   }*/
-  @PostMapping("/users/{id}")
+  /*@PostMapping("/users/{id}")
   public Empleado agregarEmple(@PathVariable("id") int id, @RequestBody Empleado empleado){
     return  servicio.agregarEmpleador(id,empleado);
-  }
+  }*/
   @PostMapping("/user")
   public ResponseEntity<Empleado> saveEmpleado(@RequestBody Empleado empleado) {
     try {
@@ -51,10 +51,10 @@ public class EmpleadoControlador {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
   }
-  @PutMapping("/ActualizarEmpleado")
+  /*@PutMapping("/ActualizarEmpleado")
   public java.lang.String actualizarEmpleado(@RequestBody Empleado empleado){
     return servicio.actualizarEmpleado(empleado);
-  }
+  }*/
   @PatchMapping("/user/{id}")
   public Empleado actualizarCampo(@PathVariable("id")int id, @RequestBody Map<Object, Object> empleadoMap){
     return servicio.actualizarCampo(id,empleadoMap);

@@ -9,12 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RepositorioMovD extends JpaRepository<MovDinero, String> {
+public interface RepositorioMovD extends JpaRepository<MovDinero, Integer> {
      List<MovDinero> findByEmpresaId(int id);
-
-    void deleteById (int id);
-    Optional<MovDinero> findById(int id);
-
-
     List<MovDinero> findByEmpresa(Empresa empresa);
 }
