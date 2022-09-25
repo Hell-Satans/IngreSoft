@@ -2,7 +2,6 @@ package com.UdeA.IngreSoft.Controlador;
 
 import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.UdeA.IngreSoft.Servicios.EmpresaServicios;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,14 +25,14 @@ public class EmpresaControlador {
     private ResponseEntity<List<Empresa>> listarEmpresa(){
         return ResponseEntity.ok(empresaServicios.listarEmpresas());
     }
-    @GetMapping("/enterprises/{id}")
+    /*@GetMapping("/enterprises/{id}")
     private ResponseEntity<Optional<Empresa>> listarId(@PathVariable ("id") int id){
         return ResponseEntity.ok(empresaServicios.buscarEmpresa(id));
     }
     @PostMapping("/empresas")
     private String agregarEmpresa(@RequestBody Empresa empresa){
         return empresaServicios.agregarEmpresa(empresa);
-    }
+    }*/
 
     @PostMapping("/enterprises")
     public ResponseEntity<Empresa> saveEmpresa(@RequestBody Empresa empresa) {

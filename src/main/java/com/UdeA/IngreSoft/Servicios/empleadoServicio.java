@@ -1,6 +1,7 @@
 package com.UdeA.IngreSoft.Servicios;
 
 import com.UdeA.IngreSoft.Entidad.Empleado;
+import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.UdeA.IngreSoft.Repositorio.EmpresaRepositorio;
 import com.UdeA.IngreSoft.Repositorio.empleadoRepositorio;
 import org.springframework.stereotype.Service;
@@ -23,34 +24,19 @@ public class empleadoServicio {
 
     public List<Empleado> listaEmpleados(){ return (List<Empleado>)repositorio.findAll();}//Consutar todos los empleados
     public Optional<Empleado> buscarEmpleado(int Idempleado) {return repositorio.findById(Idempleado); }
-
-    public java.lang.String agregarEmpleado(Empleado empleado) {
-        if (!buscarEmpleado(empleado.getIdempleado()).isPresent()) {
-            repositorio.save(empleado);
-            return "El empleado ha sido registrado con éxito";
-        } else {
-            return "El empleado ya existe";
-        }
+    public Empleado buscarEmpleado2(int idempleado){
+        return repositorio.findById(idempleado).get();
     }
-
     public <S extends Empleado> S save(S entidad){
         return repositorio.save(entidad);
     }
 
-    public Empleado agregarEmpleador(int id, Empleado empleado){
-        return empresaRepositorio.findById(id).map(emp->{
+    public boolean agregarEmpleador(int id, Empleado empleado){
+        empresaRepositorio.findById(id).map(emp->{
             empleado.setEmpresa(emp);
             return repositorio.save(empleado);
         }).get();
-    }
-
-    public java.lang.String actualizarEmpleado(Empleado empleado){
-        if (!buscarEmpleado(empleado.getIdempleado()).isPresent()){
-            repositorio.save(empleado);
-            return "El empleado  se actualizo con éxito";
-        }else{
-            return "El empleado no existe.";
-        }
+        return true;
     }
 
     public Empleado actualizarCampo(int id, Map<Object,Object> empleadoMap){
@@ -63,12 +49,20 @@ public class empleadoServicio {
         return repositorio.save(empleado);
     }
 
-    public java.lang.String eliminarEmpleado(int id){
+    public String eliminarEmpleado(int id){
         if(buscarEmpleado(id).isPresent()){
             repositorio.deleteById(id);
             return "Empleaso  eliminado";
         }else{
             return "El empleado no existe";
         }
+    }
+
+    public boolean agregarEmpleado(Empleado empl){
+        Empleado emp=repositorio.save(empl);
+        if (repositorio.findById(emp.getIdempleado())!=null){
+            return true;
+        }
+        return false;
     }
 }

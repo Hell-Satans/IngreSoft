@@ -30,7 +30,7 @@ public class ControladorMovD {
         return ResponseEntity.ok(servicio.buscarMovimiento(id));
     }
 
-    @PostMapping ("/enterprises/{id}/movements")
+    /*@PostMapping ("/enterprises/{id}/movements")
     public MovDinero agregarMovimientoDinero (@PathVariable int id,@RequestBody MovDinero movimientoDinero){
         return servicio.agregarMovimientoDinero (id,movimientoDinero);
     }
@@ -39,7 +39,7 @@ public class ControladorMovD {
     @PatchMapping("/enterprises/{id}/movements")
     public MovDinero actualizarMovDinero (@PathVariable int id ,@RequestBody MovDinero movimientoDinero){
         return servicio.actualizarMovDinero (id);
-    }
+    }*/
 
     @PostMapping("movements/{id}/{id_em}")
     public MovDinero agregarMovimiento(@PathVariable("id")int id, @PathVariable("id_em")int idEmpleado, @RequestBody MovDinero movimiento){

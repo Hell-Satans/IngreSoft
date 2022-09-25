@@ -1,5 +1,6 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import com.UdeA.IngreSoft.Entidad.enumeration.EnumRol;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,10 +12,12 @@ import java.util.List;
 public class Empleado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Idempleado;
+    private String nombre;
 
-    @Column(unique = false, length = 30)
+    private String telefono;
+    @Column(unique = true)
     private String correo;
     @JoinColumn(name = "empresaId")
     @ManyToOne
@@ -22,6 +25,11 @@ public class Empleado {
     private Empresa empresa;
     @OneToMany(mappedBy = "empleado",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MovDinero> transacciones;
+
+    @Enumerated
+    @Column(name = "rol")
+    private EnumRol rol;
+    private String contraseña;
     @Temporal(TemporalType.DATE)
     @Column//(nullable = false)
     private Date createdAt;
@@ -37,15 +45,18 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int idempleado, String correo, Empresa empresa, List<MovDinero> transacciones, Date createdAt, Date updatedAt) {
+    public Empleado(int idempleado, String nombre, String telefono, String correo, Empresa empresa, List<MovDinero> transacciones, EnumRol rol, String contraseña, Date createdAt, Date updatedAt) {
         Idempleado = idempleado;
+        this.nombre = nombre;
+        this.telefono = telefono;
         this.correo = correo;
         this.empresa = empresa;
         this.transacciones = transacciones;
+        this.rol = rol;
+        this.contraseña = contraseña;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
 
     public int getIdempleado() {
         return Idempleado;
@@ -71,15 +82,73 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    @Override
-    public String toString() {
+    public List<MovDinero> getTransacciones() {
+        return transacciones;
+    }
+
+    public void setTransacciones(List<MovDinero> transacciones) {
+        this.transacciones = transacciones;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public EnumRol getRol() {
+        return rol;
+    }
+
+    public void setRol(EnumRol rol) {
+        this.rol = rol;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    //@Override
+    /*public String toString() {
         return "Empleado{" +
                 "Idempleado=" + Idempleado +
                 ", correo='" + correo + '\'' +
                 ", empresa=" + empresa +
                 ", transacciones=" + transacciones +
+
+                ", rol=" + rol +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
-    }
+    }*/
 }
