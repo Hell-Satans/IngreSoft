@@ -2,6 +2,7 @@ package com.UdeA.IngreSoft.Servicios;
 
 import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
+import com.UdeA.IngreSoft.Entidad.MovDinero;
 import com.UdeA.IngreSoft.Repositorio.EmpresaRepositorio;
 import com.UdeA.IngreSoft.Repositorio.empleadoRepositorio;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class empleadoServicio {
     public Optional<Empleado> buscarEmpleado(int Idempleado) {return repositorio.findById(Idempleado); }
     public Empleado buscarEmpleado2(int idempleado){
         return repositorio.findById(idempleado).get();
+    }
+    public List<Empleado> porEmpresa(Empresa emp){
+        return repositorio.findByEmpresa(emp);
     }
     public <S extends Empleado> S save(S entidad){
         return repositorio.save(entidad);
@@ -64,5 +68,16 @@ public class empleadoServicio {
             return true;
         }
         return false;
+    }
+    public List<Empleado> empleadosEmpresa(int id) {
+        try {
+            return empresaRepositorio.findById(id).map(emp -> {
+                return repositorio.findByEmpresa(emp);
+            }).get();
+        }catch(Exception ex){
+            System.out.println("Error"+ex);
+
+        }
+        return null;
     }
 }

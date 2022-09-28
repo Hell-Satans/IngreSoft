@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row bg-success">
         <div class="col-4 pt-3">
-            <img  class="img-fluid" src="https://i.postimg.cc/vmgSg5fc/LOGO.png" >
+            <img  class="img-fluid" src="https://i.postimg.cc/vmgSg5fc/LOGO.png" width="25%" height="25%">
         </div>
         <div class="col-8">
             <h1 class="display-1 text-right text-light p-5">Gestión de Empleados</h1>
@@ -26,6 +26,7 @@
         <th>TELEFONO</th>
         <th>CORREO</th>
         <th>EMPRESA</th>
+        <th>EMPRESA ID</th>
         <th>ROL</th>
         <th>MOVIMIENTOS</th>
         </thead>
@@ -35,8 +36,11 @@
             <td th:text="${empleado.telefono}"></td>
             <td th:text="${empleado.correo}"></td>
             <td th:text="${empleado.empresa.nombre}"></td>
+            <td th:text="${empleado.empresa.id}"></td>
             <td th:text="${empleado.rol}"></td>
-            <td><button type="button" class="btn btn-info"><a th:href="@{/Empleado/{id}/Movimientos(id=${empleado.idempleado})}">Ver</a></button></td>
+            <td><button type="button" class="btn btn-info"><a th:href="@{/Empleado/{id}/Movimientos(id=${empleado.idempleado})}">Ver</a></button>
+                <button type="button" class="btn btn-warning"><a th:href="@{/formMov/{idem}(idem=${empleado.idempleado})}">Añadir</a></button>
+            </td>
             <td>
                 <a th:href="@{/editarEmpleado/{id}(id=${empleado.idempleado})}"><button type="button" class="btn btn-warning">Editar</button>
                 </a>
@@ -48,7 +52,10 @@
     </table>
 </div>
 <div class="container mt-5">
-    <a href="/formEmpleado"><button class="btn btn-primary" type="button">Agregar Empleado</button></a>
+    <a href="/Empresas"><button class="btn btn-primary" type="button">Empresas</button></a>
+</div>
+<div class="container mt-5">
+    <a href="/"><button class="btn btn-primary" type="button">Inicio</button></a>
 </div>
 <div class="alert alert-success alert-dismissable" role="alert" th:if="${mensajeOk != null}">
     <label th:text="${mensajeOk}"></label>

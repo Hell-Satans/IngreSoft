@@ -2,8 +2,12 @@ package com.UdeA.IngreSoft.Controlador;
 
 import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.Empresa;
+import com.UdeA.IngreSoft.Entidad.Perfil;
 import com.UdeA.IngreSoft.Servicios.EmpresaServicios;
 import com.UdeA.IngreSoft.Servicios.empleadoServicio;
+import com.UdeA.IngreSoft.Servicios.perfilServicios;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +21,24 @@ import java.util.List;
 public class vistaEmpleadosControlador {
     empleadoServicio servicio;
     EmpresaServicios empresaServicios;
+    perfilServicios perfilServicio;
 
-    public vistaEmpleadosControlador(empleadoServicio servicio, EmpresaServicios empresaServicios) {
+
+    public vistaEmpleadosControlador(empleadoServicio servicio, EmpresaServicios empresaServicios, perfilServicios perfilServicio) {
         this.servicio = servicio;
         this.empresaServicios = empresaServicios;
+        this.perfilServicio = perfilServicio;
+    }
+
+    @GetMapping("/")
+    public String index(Model model, @AuthenticationPrincipal OidcUser principal){
+        if(principal !=null){
+            Perfil user=perfilServicio.comprobarUsuario(principal.getClaims());
+
+            model.addAttribute("user",user);
+            //System.out.println(principal.getClaims());
+        }
+        return "index";
     }
 
     @GetMapping("/Empleados")
@@ -43,6 +61,13 @@ public class vistaEmpleadosControlador {
         //List<Empresa> listaEmpresas= this.empresaServicios.listarEmpresas();
         //model.addAttribute("emprelist",listaEmpresas);
         return "agregarEmpleadosEm";
+    }
+
+    @GetMapping("/Empresa/{id}/Empleados")
+    public String mostrarPorEmpresa(@PathVariable("id")int id,Model model){
+        List<Empleado> listaEmpleados = servicio.empleadosEmpresa(id);
+        model.addAttribute("lista",listaEmpleados);
+        return "Empleados";
     }
     @PostMapping("/RegistrarEmpleado")
     public String agregarEmpleados(@ModelAttribute("empleado") Empleado empleado, Model model, RedirectAttributes attributes){

@@ -58,10 +58,10 @@ public class EmpresaControlador {
         return empresaServicios.actualizarCampo(id,empresaMap);
     }
 
-    @DeleteMapping("/enterprises/{id}")
+    /*@DeleteMapping("/enterprises/{id}")
     private ResponseEntity<String> eliminarEmpresa(@PathVariable("id") int id){
 
         return ResponseEntity.ok(empresaServicios.eliminarEmpresa(id));
-    }
+    }*/
 
 }

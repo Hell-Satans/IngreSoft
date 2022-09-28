@@ -1,6 +1,7 @@
 package com.UdeA.IngreSoft.Controlador;
 
 import com.UdeA.IngreSoft.Entidad.Empleado;
+import com.UdeA.IngreSoft.Entidad.MovDinero;
 import com.UdeA.IngreSoft.Servicios.empleadoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,6 +56,10 @@ public class EmpleadoControlador {
   public java.lang.String actualizarEmpleado(@RequestBody Empleado empleado){
     return servicio.actualizarEmpleado(empleado);
   }*/
+  @GetMapping("/empleadosEmpresa/{id}")
+  public List<Empleado> porEmpresa(@PathVariable("id")int id){
+    return servicio.empleadosEmpresa(id);
+  }
   @PatchMapping("/user/{id}")
   public Empleado actualizarCampo(@PathVariable("id")int id, @RequestBody Map<Object, Object> empleadoMap){
     return servicio.actualizarCampo(id,empleadoMap);
