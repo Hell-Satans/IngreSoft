@@ -1,6 +1,7 @@
 package com.UdeA.IngreSoft.Servicios;
 
 
+import com.UdeA.IngreSoft.Entidad.Empleado;
 import com.UdeA.IngreSoft.Entidad.MovDinero;
 import com.UdeA.IngreSoft.Repositorio.EmpresaRepositorio;
 import com.UdeA.IngreSoft.Repositorio.RepositorioMovD;
@@ -36,22 +37,41 @@ public class ServiciosMovD {
     public Optional<MovDinero> buscarMovimiento(int Id) {
         return MovdRepositorio.findById(Id);
     }
-    public List<MovDinero> movimientosDineroEmpresa(int id) {
-        return  MovdRepositorio.findByEmpresaId(id);
+    public MovDinero buscarMov(int id){
+        return MovdRepositorio.findById(id).get();
     }
 
-    public MovDinero agregarMovimiento(int id, int idempleado, MovDinero movimiento) {
+    /*public List<MovDinero> movimientosDineroEmpresa(int id) {
+        return  MovdRepositorio.findByEmpresaId(id);
+    }*/
+    public boolean agregarMov(MovDinero mov){
+        MovDinero mto=MovdRepositorio.save(mov);
+        if (MovdRepositorio.findById(mto.getId())!=null){
+            return true;
+        }
+        return false;
+    }
+
+    /*public boolean agregarMovimiento(int id, int idempleado, MovDinero movimiento) {
         empresaRepo.findById(id).map(empresa -> {
             movimiento.setEmpresa(empresa);
             return empresa;
         });
-        return empleadoRepo.findById(idempleado).map(empleado -> {
+        empleadoRepo.findById(idempleado).map(empleado -> {
             movimiento.setEmpleado(empleado);
             return MovdRepositorio.save(movimiento);
         }).get();
+        return true;
+    }*/
+    public boolean agregarMovi(int id, MovDinero movimiento){
+        empleadoRepo.findById(id).map(empl->{
+            movimiento.setEmpleado(empl);
+            return MovdRepositorio.save(movimiento);
+        }).get();
+        return true;
     }
 
-    public List<MovDinero> porEmpresa(int id) {
+    /*public List<MovDinero> porEmpresa(int id) {
         try {
             return empresaRepo.findById(id).map(emp -> {
                 return MovdRepositorio.findByEmpresa(emp);
@@ -61,7 +81,7 @@ public class ServiciosMovD {
 
         }
         return null;
-    }
+    }*/
     public MovDinero actualizarCampo(int id, Map<Object,Object> movMap){
         MovDinero movimiento=MovdRepositorio.findById(id).get();
         movMap.forEach((key,value)->{
@@ -78,6 +98,52 @@ public class ServiciosMovD {
         }else{
             return "Movimiento no existe";
         }
+    }
+
+    /*public List<MovDinero> movimientosEmpleado(Integer id) { //Obterner teniendo en cuenta el id del empleado
+        return MovdRepositorio.findByEmpleado(id);
+    }
+
+    public List<MovDinero> movimientosEmpresa(Integer id) { //Obtener movimientos teniendo en cuenta el id de la empresa a la que pertencen los empleados que la registraron
+        return MovdRepositorio.findByEmpresa(id);
+    }*/
+    public List<MovDinero> movimientosPorEmpleado(int id) {
+        try {
+            return empleadoRepo.findById(id).map(empl -> {
+                return MovdRepositorio.findByEmpleado(empl);
+            }).get();
+        }catch(Exception ex){
+            System.out.println("Error"+ex);
+
+        }
+        return null;
+    }
+    public List<MovDinero> movimientosPorEmpresa(int id) {
+        try {
+            return empresaRepo.findById(id).map(empr -> {
+                return MovdRepositorio.findByEmpresa(empr);
+            }).get();
+        }catch(Exception ex){
+            System.out.println("Error"+ex);
+
+        }
+        return null;
+    }
+
+    public Long obtenerSumaMontos(){
+        return MovdRepositorio.SumarMontos();
+    }
+
+    public Long MontosPorEmpleado(Integer id){
+        return MovdRepositorio.MontosPorEmpleado(id);
+    }
+
+    public Long MontosPorEmpresa(Integer id){
+        return MovdRepositorio.MontosPorEmpresa(id);
+    }
+
+    public Integer IdPorCorreo(String Correo){
+        return MovdRepositorio.IdPorCorreo(Correo);
     }
 
 }

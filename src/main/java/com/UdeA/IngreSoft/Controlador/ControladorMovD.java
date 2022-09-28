@@ -20,10 +20,10 @@ public class ControladorMovD {
         this.servicio = servicio;
     }
 
-    @GetMapping ("/enterprises/{id}/movements")
+    /*@GetMapping ("/enterprises/{id}/movements")
     public List<MovDinero>movimientosDineroEmpresa (@PathVariable int id ){
         return servicio.movimientosDineroEmpresa (id);
-    }
+    }*/
 
     @GetMapping("/movements/{id}")
     private ResponseEntity<Optional<MovDinero>> listarId(@PathVariable ("id") int id){
@@ -41,7 +41,7 @@ public class ControladorMovD {
         return servicio.actualizarMovDinero (id);
     }*/
 
-    @PostMapping("movements/{id}/{id_em}")
+    /*@PostMapping("movements/{id}/{id_em}")
     public MovDinero agregarMovimiento(@PathVariable("id")int id, @PathVariable("id_em")int idEmpleado, @RequestBody MovDinero movimiento){
         return servicio.agregarMovimiento(id,idEmpleado,movimiento);
     }
@@ -49,7 +49,7 @@ public class ControladorMovD {
     @GetMapping("/porEmpresa/{id}")
     public List<MovDinero> porEmpresa(@PathVariable("id")int id){
         return servicio.porEmpresa(id);
-    }
+    }*/
 
 
     @PatchMapping("/enterprises/{id}/movement")

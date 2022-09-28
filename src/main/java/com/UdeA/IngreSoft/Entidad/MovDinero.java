@@ -1,13 +1,10 @@
 package com.UdeA.IngreSoft.Entidad;
 
-import com.UdeA.IngreSoft.Entidad.Empleado;
-import com.UdeA.IngreSoft.Entidad.Empresa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="movDinero")
@@ -20,16 +17,18 @@ public class MovDinero {
     @Column(nullable = false, length= 100)
     private String concepto;
     @Column(nullable = false, length = 20)
-    private float monto;
+    private Long monto;
+    @Column(name = "tipo")
+    private String tipo;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "empleadoId", referencedColumnName = "idempleado",nullable = false)
     private Empleado empleado;
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "empresaId", referencedColumnName = "id",nullable = false)
-    private Empresa empresa;
+    @JoinColumn(name = "empresaId", referencedColumnName = "id")
+    private Empresa empresa;*/
     @Temporal(TemporalType.DATE)
     @Column
     private Date fecha;
@@ -51,13 +50,30 @@ public class MovDinero {
     public MovDinero() {
     }
 
-    public MovDinero(int id, String concepto, float monto, Empleado empleado, Empresa empresa, Date fecha) {
+    public MovDinero(int id, String concepto, Long monto, String tipo, Empleado empleado, Date fecha, Date update) {
         this.id = id;
         this.concepto = concepto;
-        this.monto = monto;
+        this.monto=monto;
+        this.tipo = tipo;
         this.empleado = empleado;
-        this.empresa = empresa;
         this.fecha = fecha;
+        this.update = update;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Date getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
     }
 
     public int getId() {
@@ -76,11 +92,11 @@ public class MovDinero {
         this.concepto = concepto;
     }
 
-    public float getMonto() {
+    public Long getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(Long monto) {
         this.monto = monto;
     }
 
@@ -92,13 +108,13 @@ public class MovDinero {
         this.empleado = empleado;
     }
 
-    public Empresa getEmpresa() {
+    /*public Empresa getEmpresa() {
         return empresa;
     }
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
-    }
+    }*/
 
     public Date getFecha() {
         return fecha;
@@ -108,16 +124,14 @@ public class MovDinero {
         this.fecha = fecha;
     }
 
-    @Override
-    public String toString() {
-        return "MovDinero{" +
-                "id=" + id +
-                ", concepto='" + concepto + '\'' +
-                ", monto=" + monto +
-                ", empleado=" + empleado +
-                ", empresa=" + empresa +
-                ", fecha=" + fecha +
-                ", update=" + update +
-                '}';
+    public Long egreso(String tipo){
+        Long cantidad;
+        if(tipo.equalsIgnoreCase("Egreso")){
+            cantidad=-monto;
+        }else{
+            cantidad=monto;
+        }return cantidad;
     }
+
+
 }

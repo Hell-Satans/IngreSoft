@@ -28,8 +28,8 @@ public class Empresa {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private List<Empleado> usuarios;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<MovDinero> transacciones;
+    /*@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MovDinero> transacciones;*/
     @Temporal(TemporalType.DATE)
     @Column//(nullable = false)
     private Date createdAt;
@@ -107,13 +107,13 @@ public class Empresa {
         this.usuarios = usuarios;
     }
 
-    public List<MovDinero> getTransacciones() {
+    /*public List<MovDinero> getTransacciones() {
         return transacciones;
     }
 
     public void setTransacciones(List<MovDinero> transacciones) {
         this.transacciones = transacciones;
-    }
+    }*/
 
     public Date getCreatedAt() {
         return createdAt;
@@ -139,7 +139,7 @@ public class Empresa {
                 ", telefono='" + telefono + '\'' +
                 ", nit='" + nit + '\'' +
                 ", usuarios=" + usuarios +
-                ", transacciones=" + transacciones +
+                //", transacciones=" + transacciones +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

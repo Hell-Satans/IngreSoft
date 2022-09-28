@@ -48,21 +48,34 @@ public class VistaEmpresasControlador {
         model.addAttribute("empresa", empresaServicio.buscarEmpresa(id));
         return "editarEmpresa";
     }
+    @GetMapping("/perfilEmpresa/{id}")
+    public String pasarEmpresa(@PathVariable("id") int id, Model model){
+        model.addAttribute("empresa", empresaServicio.buscarEmpresa(id));
+        return "PerfilEmpresa";
+    }
 
     @GetMapping("/eliminarEmpresa/{id}")
-    public String eliminarLibro(@PathVariable("id") int id,Model model){
-        empresaServicio.eliminarEmpresa(id);
+    public String eliminarLibro(@PathVariable("id") int id,Model model,RedirectAttributes attributes){
+        if(empresaServicio.eliminarEmpresa(id)){
+            attributes.addFlashAttribute("borrarOk","Empresa eliminada exitosamente.");
+        }else{
+            attributes.addFlashAttribute("borrarError","Error, la empresa no se eliminó.");
+        }
         return "redirect:/Empresas";
     }
 
     @PostMapping("/guardarEditado/{id}")
-    public String actualizarLibro(@PathVariable("id") int id, @ModelAttribute("empresa") Empresa empresa,Model model){
+    public String actualizarLibro(@PathVariable("id") int id, @ModelAttribute("empresa") Empresa empresa,Model model,RedirectAttributes attributes){
         Empresa emp=empresaServicio.buscarEmpresa(id);
         emp.setNombre(empresa.getNombre());
         emp.setDireccion(empresa.getDireccion());
         emp.setTelefono(empresa.getTelefono());
         emp.setNit(empresa.getNit());
-        empresaServicio.saveEmpresa(emp);
+        if(empresaServicio.saveEmpresa(emp)){
+            attributes.addFlashAttribute("Ok","Empresa actualizada exitosamente.");
+        }else{
+            attributes.addFlashAttribute("Error","Error, la empresa no se actualizó.");
+        }
         return "redirect:/Empresas";
     }
 }

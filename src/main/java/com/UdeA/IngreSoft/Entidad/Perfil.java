@@ -1,71 +1,70 @@
 package com.UdeA.IngreSoft.Entidad;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Usuario")
 public class Perfil {
-    private java.lang.String idPerfil;
-    private java.lang.String imagenPerfil;
-    private Empleado telefono;
-    private java.lang.String usuarioPerfil;
-    private Empleado cargo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String email;
+    @Column(unique = true)
+    private String nick;
+    @Column(unique = true)
+    private String imagen;
+    @Column(unique = true)
+    private String auth_id;
 
     public Perfil() {
     }
 
-    public Perfil(java.lang.String idPerfil, java.lang.String imagenPerfil, Empleado telefono, java.lang.String usuarioPerfil, Empleado cargo) {
-        this.idPerfil = idPerfil;
-        this.imagenPerfil = imagenPerfil;
-        this.telefono = telefono;
-        this.usuarioPerfil = usuarioPerfil;
-        this.cargo = cargo;
+    public Perfil(String email, String nick, String imagen, String auth_id) {
+        this.id=id;
+        this.email = email;
+        this.nick = nick;
+        this.imagen = imagen;
+        this.auth_id = auth_id;
     }
 
-    public java.lang.String getIdPerfil() {
-        return idPerfil;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPerfil(java.lang.String idPerfil) {
-        this.idPerfil = idPerfil;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public java.lang.String getImagenPerfil() {
-        return imagenPerfil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImagenPerfil(java.lang.String imagenPerfil) {
-        this.imagenPerfil = imagenPerfil;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Empleado getTelefono() {
-        return telefono;
+    public String getNick() {
+        return nick;
     }
 
-    public void setTelefono(Empleado telefono) {
-        this.telefono = telefono;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public java.lang.String getUsuarioPerfil() {
-        return usuarioPerfil;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setUsuarioPerfil(java.lang.String usuarioPerfil) {
-        this.usuarioPerfil = usuarioPerfil;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    public Empleado getCargo() {
-        return cargo;
+    public String getAuth_id() {
+        return auth_id;
     }
 
-    public void setCargo(Empleado cargo) {
-        this.cargo = cargo;
-    }
-
-    @Override
-    public java.lang.String toString() {
-        return "Perfil{" +
-                "idPerfil='" + idPerfil + '\'' +
-                ", imagenPerfil='" + imagenPerfil + '\'' +
-                ", telefono=" + telefono +
-                ", usuarioPerfil='" + usuarioPerfil + '\'' +
-                ", cargo=" + cargo +
-                '}';
+    public void setAuth_id(String auth_id) {
+        this.auth_id = auth_id;
     }
 }
